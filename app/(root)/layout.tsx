@@ -1,10 +1,11 @@
 import Navbar from "@/app/components/Navbar";
 import type { ReactNode } from "react";
-
+import '../globals.css';
 
 
 
 export default function Layout({children}:Readonly<{children:ReactNode}>) {
+    
         return(
             <html>
                 <body className="bg-black">

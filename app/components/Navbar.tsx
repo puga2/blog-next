@@ -8,12 +8,12 @@ async function Navbar() {
   // const user = session?.user;
   return (
     <header className='px-5 py-3 bg-white shadow-md font-work-sans'>
-      <nav className='flex items-center justify-between text-black'>
+      <nav className='flex justify-between  items-center'>
         <Link href="/">
           <Image src='/logo.png' alt="logo" width={144} height={30} />
         </Link>
-      </nav>
-      <div className='flex item-center gap-5'>
+    
+      <div className='flex items-center text-black gap-5'>
         {session && session ?.user ? (
           <>
             <Link href="/startup/create">
@@ -21,11 +21,15 @@ async function Navbar() {
                   Create
             </span>
           </Link>
-        <button  onClick={async ()=>await signOut()}>
-          <span>
+        <form  action={async ()=>{
+          'use server';
+
+          await signOut({redirectTo:"/"});
+        }}>
+          <button type='submit'>
             Logout
-          </span>
-        </button>
+          </button>
+        </form>
         <Link href={`/user/${session?.user?.id}`}>
           <span>
             {session?.user?.name}
@@ -41,6 +45,7 @@ async function Navbar() {
           </form>
         )}
     </div>
+      </nav>
     </header >
   )
 }
